@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lalilo WL Red Alert Review — 5 March 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --bg: #eef0f7;
+      --surface: #ffffff;
+      --surface-2: #f7f8fc;
+      --border: #e1e4ef;
+      --border-light: #eef1f8;
+
+      --text-1: #111827;
+      --text-2: #4b5563;
+      --text-3: #9ca3af;
+
+      --green:        #16a34a;
+      --green-bg:     #f0fdf4;
+      --green-border: #bbf7d0;
+
+      --amber:        #d97706;
+      --amber-bg:     #fffbeb;
+      --amber-border: #fde68a;
+
+      --red:          #dc2626;
+      --red-bg:       #fef2f2;
+      --red-border:   #fecaca;
+
+      --blue:         #2563eb;
+      --blue-bg:      #eff6ff;
+      --blue-border:  #bfdbfe;
+
+      --orange:       #ea580c;
+      --orange-bg:    #fff7ed;
+      --orange-border:#fed7aa;
+
+      --brand-dark:   #1e1b4b;
+      --brand-mid:    #312e81;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0/0.05);
+      --shadow:    0 1px 3px 0 rgb(0 0 0/0.10), 0 1px 2px -1px rgb(0 0 0/0.10);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0/0.10), 0 2px 4px -2px rgb(0 0 0/0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── PAGE HEADER ────────────────────────────────── */
+    .page-header {
+      background: linear-gradient(160deg, var(--brand-dark) 0%, var(--brand-mid) 55%, #3730a3 100%);
+      padding: 48px 60px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .header-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .chip {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.70);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+    .chip-alert {
+      background: rgba(239,68,68,0.22);
+      color: #fca5a5;
+      border-color: rgba(239,68,68,0.40);
+    }
+    .page-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .page-subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.50);
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+    .header-kpis {
+      display: flex;
+      margin-top: 36px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      overflow: hidden;
+      width: fit-content;
+      position: relative;
+      z-index: 1;
+    }
+    .kpi {
+      padding: 16px 30px;
+      border-right: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .kpi:last-child { border-right: none; }
+    .kpi-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+    }
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .kpi-value.flagged { color: #fca5a5; }
+
+    /* ── BODY ───────────────────────────────────────── */
+    .page-body {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 60px 64px;
+    }
+
+    /* ── SECTION CHROME ─────────────────────────────── */
+    .report-section { margin-bottom: 64px; }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 900;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .icon-red    { background: var(--red); }
+    .icon-orange { background: var(--orange); }
+    .icon-blue   { background: var(--blue); }
+    .section-heading { flex: 1; }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-1);
+      letter-spacing: -0.02em;
+    }
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 4px 13px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+    .tag-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+    .tag-orange { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+    .tag-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+
+    /* ── ALERT SUMMARY BAR ──────────────────────────── */
+    .alert-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff1f2;
+      border: 1.5px solid #fecdd3;
+      border-left: 4px solid var(--red);
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+    }
+    .alert-icon { font-size: 22px; flex-shrink: 0; }
+    .alert-body { flex: 1; font-size: 13.5px; color: #9f1239; line-height: 1.6; }
+    .alert-body strong { font-weight: 700; }
+    .alert-nums {
+      display: flex;
+      gap: 24px;
+      flex-shrink: 0;
+      border-left: 1px solid #fecdd3;
+      padding-left: 20px;
+    }
+    .alert-num { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .alert-num-val { font-size: 22px; font-weight: 900; color: var(--red); letter-spacing: -0.02em; }
+    .alert-num-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #be123c; }
+
+    /* ── LEGEND ─────────────────────────────────────── */
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .legend-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-3);
+      margin-right: 6px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      color: var(--text-2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3px 10px 3px 7px;
+      border-radius: 100px;
+    }
+    .ld { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .ld-green  { background: #22c55e; }
+    .ld-amber  { background: #f59e0b; }
+    .ld-red    { background: #ef4444; }
+
+    /* ── STUDENT CARDS ──────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .card.flagged { border-color: #fcd34d; }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      padding: 16px 18px;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      font-size: 14px; font-weight: 800; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .av-indigo { background: linear-gradient(135deg,#6366f1,#4f46e5); }
+    .av-teal   { background: linear-gradient(135deg,#14b8a6,#0d9488); }
+    .av-rose   { background: linear-gradient(135deg,#f43f5e,#e11d48); }
+    .av-violet { background: linear-gradient(135deg,#a855f7,#9333ea); }
+    .av-sky    { background: linear-gradient(135deg,#38bdf8,#0ea5e9); }
+    .av-amber  { background: linear-gradient(135deg,#fbbf24,#f59e0b); }
+
+    .card-name-block { flex: 1; min-width: 0; }
+    .card-name {
+      font-size: 15px; font-weight: 700; color: var(--text-1);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .card-meta { font-size: 11.5px; color: var(--text-3); margin-top: 1px; }
+
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-green { background: #22c55e; box-shadow: 0 0 0 3px #dcfce7; }
+    .dot-amber { background: #f59e0b; box-shadow: 0 0 0 3px #fef3c7; }
+    .dot-red   { background: #ef4444; box-shadow: 0 0 0 3px #fee2e2; }
+
+    .card-metrics {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+    .metric-cell {
+      padding: 14px 16px;
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .metric-cell:last-child { border-right: none; }
+    .metric-lbl {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: var(--text-3); margin-bottom: 5px;
+    }
+    .metric-val {
+      font-size: 24px; font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1;
+      color: var(--text-1);
+    }
+    .mv-green { color: var(--green); }
+    .mv-amber { color: var(--amber); }
+    .mv-red   { color: var(--red); }
+
+    .metric-bar {
+      height: 3px; background: var(--border-light);
+      border-radius: 100px; margin-top: 7px; overflow: hidden;
+    }
+    .metric-bar-fill {
+      height: 100%; border-radius: 100px; background: var(--green);
+      transition: width 0.3s ease;
+    }
+    .mbf-amber { background: var(--amber); }
+    .mbf-red   { background: var(--red); }
+
+    /* ── WASTE CALLOUT ──────────────────────────────── */
+    .waste-section {
+      border-top: 1.5px solid #fcd34d;
+      background: linear-gradient(180deg,#fffbeb 0%,#fff7ed 100%);
+      flex: 1;
+    }
+    .waste-top {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      border-bottom: 1px dashed #fed7aa;
+    }
+    .waste-top-icon { font-size: 13px; }
+    .waste-top-label {
+      flex: 1; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em; color: #92400e;
+    }
+    .waste-pct {
+      font-size: 12px; font-weight: 800; color: #c2410c;
+      background: #ffedd5; border: 1px solid #fed7aa;
+      padding: 2px 10px; border-radius: 100px;
+    }
+    .waste-stats {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      border-bottom: 1px dashed #fed7aa;
+    }
+    .waste-stat {
+      padding: 10px 14px;
+      border-right: 1px dashed #fed7aa;
+    }
+    .waste-stat:last-child { border-right: none; }
+    .ws-label {
+      font-size: 9.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: #b45309; margin-bottom: 3px;
+    }
+    .ws-value {
+      font-size: 18px; font-weight: 900;
+      color: #78350f; letter-spacing: -0.02em;
+    }
+    .ws-value.corrected { color: var(--green); }
+    .waste-notes { padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+    .waste-note { font-size: 12px; color: #92400e; line-height: 1.65; }
+    .warn-box {
+      display: flex; gap: 7px; align-items: flex-start;
+      background: var(--red-bg); border: 1px solid var(--red-border);
+      border-radius: 7px; padding: 8px 12px; margin-top: 2px;
+    }
+    .warn-box-text {
+      font-size: 12px; color: #991b1b; font-weight: 500; line-height: 1.55;
+    }
+
+    /* ── TABLES ─────────────────────────────────────── */
+    .table-wrap {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .report-table { width: 100%; border-collapse: collapse; }
+    .report-table thead tr { background: var(--surface-2); }
+    .report-table th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-3);
+      border-bottom: 1.5px solid var(--border);
+      white-space: nowrap;
+    }
+    .report-table td {
+      padding: 13px 16px;
+      font-size: 13.5px;
+      color: var(--text-1);
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: middle;
+    }
+    .report-table tbody tr:last-child td { border-bottom: none; }
+    .report-table tbody tr:hover { background: #f9fafb; }
+
+    .student-cell { display: flex; align-items: center; gap: 10px; }
+    .avatar-sm {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 11px; font-weight: 800; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .student-name-text { font-weight: 600; }
+
+    .badge {
+      display: inline-flex; align-items: center;
+      font-size: 12.5px; font-weight: 700;
+      padding: 3px 11px; border-radius: 100px;
+    }
+    .badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+    .badge-amber  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-border); }
+    .badge-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+    .badge-gray   { background: #f3f4f6; color: #6b7280; border: 1px solid #e5e7eb; }
+    .badge-orange { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+
+    .plan-chip {
+      font-size: 11.5px; font-weight: 600;
+      padding: 3px 10px; border-radius: 6px;
+    }
+    .plan-custom   { background: #ede9fe; color: #5b21b6; }
+    .plan-standard { background: #f3f4f6; color: #374151; }
+
+    .skill-tag {
+      display: inline-flex; align-items: center;
+      font-size: 11px; font-weight: 500;
+      padding: 2px 8px;
+      background: var(--red-bg); color: var(--red);
+      border: 1px solid var(--red-border);
+      border-radius: 5px; margin: 2px 2px 2px 0;
+    }
+    .none-text { color: var(--text-3); font-size: 12.5px; font-style: italic; }
+    .num-days { font-weight: 700; }
+
+    /* ── INFO NOTE ──────────────────────────────────── */
+    .info-note {
+      display: flex; gap: 10px; align-items: flex-start;
+      background: var(--blue-bg); border: 1px solid var(--blue-border);
+      border-radius: 10px; padding: 12px 16px; margin-top: 12px;
+      font-size: 12.5px; color: #1e40af; line-height: 1.55;
+    }
+    .info-note-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    .page-footer {
+      text-align: center; padding: 28px 40px;
+      font-size: 12px; color: var(--text-3);
+      border-top: 1px solid var(--border); margin-top: 8px;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .cards-grid { grid-template-columns: repeat(2,1fr); }
+      .page-body  { padding: 32px 32px; }
+      .page-header { padding: 36px 32px; }
+    }
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .page-body  { padding: 20px 16px; }
+      .page-header { padding: 28px 20px; }
+      .header-kpis { flex-wrap: wrap; }
+      .page-title { font-size: 28px; }
+      .alert-nums { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ PAGE HEADER ════════════════════ -->
+<header class="page-header">
+  <div class="header-chips">
+    <span class="chip">Alpha School · Austin Campus</span>
+    <span class="chip">World Learner · G1</span>
+    <span class="chip chip-alert">🔴 Red Alert Review</span>
+  </div>
+  <h1 class="page-title">Lalilo WL Activity Report</h1>
+  <p class="page-subtitle">5 March 2026 &nbsp;·&nbsp; Waste Learning Review &nbsp;·&nbsp; Standard Plan</p>
+  <div class="header-kpis">
+    <div class="kpi">
+      <span class="kpi-label">Students</span>
+      <span class="kpi-value">6</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Campus</span>
+      <span class="kpi-value">Austin</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Level</span>
+      <span class="kpi-value">WL</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Placement</span>
+      <span class="kpi-value">G1 All</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-label">Waste Flagged</span>
+      <span class="kpi-value flagged">2 / 6</span>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════ PAGE BODY ════════════════════ -->
+<main class="page-body">
+
+  <!-- ──────────────────── SECTION 1: 5TH MARCH ──────────────────── -->
+  <section class="report-section">
+    <div class="section-head">
+      <div class="section-icon icon-red">1</div>
+      <div class="section-heading">
+        <div class="section-title">5th March — Red Alert Day</div>
+        <div class="section-desc">Gemini SR waste analysis applied · flagged sessions reviewed by guide</div>
+      </div>
+      <span class="section-tag tag-red">Priority 1</span>
+    </div>
+
+    <!-- Alert bar -->
+    <div class="alert-bar">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-body">
+        <strong>2 students flagged for significant learning time waste.</strong>
+        Rivers Morgan and Nadia Mercer both had Gemini SR screen recordings reviewed.
+        Rivers' corrected XP/Min improves to <strong>1.0</strong> when waste is removed.
+        Nadia's low XP output persists even after correcting for waste, and guide feedback noted no corrective scaffolding was given in the moment.
+      </div>
+      <div class="alert-nums">
+        <div class="alert-num">
+          <span class="alert-num-val">75%</span>
+          <span class="alert-num-lbl">Avg Accuracy</span>
+        </div>
+        <div class="alert-num">
+          <span class="alert-num-val">0.97</span>
+          <span class="alert-num-lbl">Avg XP/Min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <span class="legend-title">Key:</span>
+      <span class="legend-item"><span class="ld ld-green"></span>Strong (&ge;1.2 XP/Min, &ge;80% acc.)</span>
+      <span class="legend-item"><span class="ld ld-amber"></span>Moderate (0.8–1.19 / 70–79%)</span>
+      <span class="legend-item"><span class="ld ld-red"></span>Concern (&lt;0.8 / &lt;70%)</span>
+    </div>
+
+    <!-- Cards — sorted by XP:Min desc -->
+    <div class="cards-grid">
+
+      <!-- Pierce McCord — 1.6, 81% ✓ -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar av-indigo">PM</div>
+          <div class="card-name-block">
+            <div class="card-name">Pierce McCord</div>
+            <div class="card-meta">Austin · WL · G1 · Standard Plan</div>
+          </div>
+          <div class="status-dot dot-green"></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric-cell">
+            <div class="metric-lbl">Minutes</div>
+            <div class="metric-val">25</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:39%;background:#6366f1"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP</div>
+            <div class="metric-val">39</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:93%;background:#6366f1"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP / Min</div>
+            <div class="metric-val mv-green">1.6</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">Accuracy</div>
+            <div class="metric-val mv-green">81%</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:81%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zoya Luna — 1.5, 81% ✓ -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar av-sky">ZL</div>
+          <div class="card-name-block">
+            <div class="card-name">Zoya Luna</div>
+            <div class="card-meta">Austin · WL · G1 · Standard Plan</div>
+          </div>
+          <div class="status-dot dot-green"></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric-cell">
+            <div class="metric-lbl">Minutes</div>
+            <div class="metric-val">26</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:41%;background:#0ea5e9"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP</div>
+            <div class="metric-val">39</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:93%;background:#0ea5e9"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP / Min</div>
+            <div class="metric-val mv-green">1.5</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:94%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">Accuracy</div>
+            <div class="metric-val mv-green">81%</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:81%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Miguel Bash — 1.2, 83% ✓ -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar av-amber">MB</div>
+          <div class="card-name-block">
+            <div class="card-name">Miguel Bash</div>
+            <div class="card-meta">Austin · WL · G1 · Custom GK Plan</div>
+          </div>
+          <div class="status-dot dot-green"></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric-cell">
+            <div class="metric-lbl">Minutes</div>
+            <div class="metric-val">34</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:53%;background:#f59e0b"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP</div>
+            <div class="metric-val">42</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:100%;background:#f59e0b"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP / Min</div>
+            <div class="metric-val mv-green">1.2</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:75%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">Accuracy</div>
+            <div class="metric-val mv-green">83%</div>
+            <div class="metric-bar"><div class="metric-bar-fill" style="width:83%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sloane Derham — 0.9, 70% ~ -->
+      <div class="card">
+        <div class="card-top">
+          <div class="avatar av-teal">SD</div>
+          <div class="card-name-block">
+            <div class="card-name">Sloane Derham</div>
+            <div class="card-meta">Austin · WL · G1 · Standard Plan</div>
+          </div>
+          <div class="status-dot dot-amber"></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric-cell">
+            <div class="metric-lbl">Minutes</div>
+            <div class="metric-val">42</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-amber" style="width:66%;"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP</div>
+            <div class="metric-val">39</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-amber" style="width:93%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP / Min</div>
+            <div class="metric-val mv-amber">0.9</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-amber" style="width:56%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">Accuracy</div>
+            <div class="metric-val mv-amber">70%</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-amber" style="width:70%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rivers Morgan — 0.6, 67% ⚠️ WASTE -->
+      <div class="card flagged">
+        <div class="card-top">
+          <div class="avatar av-violet">RM</div>
+          <div class="card-name-block">
+            <div class="card-name">Rivers Morgan</div>
+            <div class="card-meta">Austin · WL · G1 · Custom GK Plan</div>
+          </div>
+          <div class="status-dot dot-red"></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric-cell">
+            <div class="metric-lbl">Minutes</div>
+            <div class="metric-val">40</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:63%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP</div>
+            <div class="metric-val">24</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:57%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP / Min</div>
+            <div class="metric-val mv-red">0.6</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:38%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">Accuracy</div>
+            <div class="metric-val mv-red">67%</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:67%"></div></div>
+          </div>
+        </div>
+        <div class="waste-section">
+          <div class="waste-top">
+            <span class="waste-top-icon">⚠️</span>
+            <span class="waste-top-label">Gemini SR — Waste Detected</span>
+            <span class="waste-pct">57% waste</span>
+          </div>
+          <div class="waste-stats">
+            <div class="waste-stat">
+              <div class="ws-label">Identified Time</div>
+              <div class="ws-value">56 min</div>
+            </div>
+            <div class="waste-stat">
+              <div class="ws-label">Waste Time</div>
+              <div class="ws-value">32 min</div>
+            </div>
+            <div class="waste-stat">
+              <div class="ws-label">Corrected XP/Min</div>
+              <div class="ws-value corrected">1.0 ✓</div>
+            </div>
+          </div>
+          <div class="waste-notes">
+            <p class="waste-note">Idling, navigating out of lessons, rushing, and skipping story pages accounted for 32 minutes of the session.</p>
+            <p class="waste-note">Rivers' XP gain and accuracy are <strong>on par</strong> with peers when waste is removed — focused effort is there, but it needs to be sustained.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nadia Mercer — 0.3, 68% ⚠️ WASTE -->
+      <div class="card flagged">
+        <div class="card-top">
+          <div class="avatar av-rose">NM</div>
+          <div class="card-name-block">
+            <div class="card-name">Nadia Mercer</div>
+            <div class="card-meta">Austin · WL · G1 · Standard Plan</div>
+          </div>
+          <div class="status-dot dot-red"></div>
+        </div>
+        <div class="card-metrics">
+          <div class="metric-cell">
+            <div class="metric-lbl">Minutes</div>
+            <div class="metric-val">32</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:50%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP</div>
+            <div class="metric-val">9</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:21%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">XP / Min</div>
+            <div class="metric-val mv-red">0.3</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:19%"></div></div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-lbl">Accuracy</div>
+            <div class="metric-val mv-red">68%</div>
+            <div class="metric-bar"><div class="metric-bar-fill mbf-red" style="width:68%"></div></div>
+          </div>
+        </div>
+        <div class="waste-section">
+          <div class="waste-top">
+            <span class="waste-top-icon">⚠️</span>
+            <span class="waste-top-label">Gemini SR — Waste Detected</span>
+            <span class="waste-pct">60% waste</span>
+          </div>
+          <div class="waste-stats">
+            <div class="waste-stat">
+              <div class="ws-label">Identified Time</div>
+              <div class="ws-value">51 min</div>
+            </div>
+            <div class="waste-stat">
+              <div class="ws-label">Waste Time</div>
+              <div class="ws-value">33 min</div>
+            </div>
+            <div class="waste-stat">
+              <div class="ws-label">Corrected XP/Min</div>
+              <div class="ws-value">0.3</div>
+            </div>
+          </div>
+          <div class="waste-notes">
+            <p class="waste-note">~25 min of idling in menus appears already excluded from TimeBack active time tracking. Remaining waste includes rushing, app switching, restarting lessons, and answering questions before audio instruction finishes.</p>
+            <p class="waste-note">Scaffolded instruction was given during lessons where Nadia struggled.</p>
+            <div class="warn-box">
+              <span>🚨</span>
+              <span class="warn-box-text"><strong>Guide report:</strong> No corrective feedback was provided during the session. Low XP/Min persists even after removing waste — this is a content engagement concern, not just a time management issue.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cards-grid -->
+  </section>
+
+  <!-- ──────────────────── SECTION 2: S4 ──────────────────── -->
+  <section class="report-section">
+    <div class="section-head">
+      <div class="section-icon icon-orange">2</div>
+      <div class="section-heading">
+        <div class="section-title">Sprint 4 (S4) Activity</div>
+        <div class="section-desc">Current sprint · all sessions to date · sorted by XP/Min</div>
+      </div>
+      <span class="section-tag tag-orange">Priority 2</span>
+    </div>
+
+    <div class="table-wrap">
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Plan Type</th>
+            <th>Active Days</th>
+            <th>Minutes</th>
+            <th>XP</th>
+            <th>XP / Min</th>
+            <th>Accuracy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-indigo">PM</div><span class="student-name-text">Pierce McCord</span></div></td>
+            <td><span class="plan-chip plan-standard">Standard</span></td>
+            <td><span class="num-days">4</span></td>
+            <td>85</td>
+            <td>105</td>
+            <td><span class="badge badge-green">1.2</span></td>
+            <td><span class="badge badge-amber">77%</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-sky">ZL</div><span class="student-name-text">Zoya Luna</span></div></td>
+            <td><span class="plan-chip plan-standard">Standard</span></td>
+            <td><span class="num-days">1</span></td>
+            <td>26</td>
+            <td>39</td>
+            <td><span class="badge badge-green">1.5</span></td>
+            <td><span class="badge badge-green">82%</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-violet">RM</div><span class="student-name-text">Rivers Morgan</span></div></td>
+            <td><span class="plan-chip plan-custom">Custom GK</span></td>
+            <td><span class="num-days">4</span></td>
+            <td>96</td>
+            <td>149</td>
+            <td><span class="badge badge-green">1.6</span></td>
+            <td><span class="badge badge-amber">74%</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-teal">SD</div><span class="student-name-text">Sloane Derham</span></div></td>
+            <td><span class="plan-chip plan-standard">Standard</span></td>
+            <td><span class="num-days">3</span></td>
+            <td>98</td>
+            <td>102</td>
+            <td><span class="badge badge-amber">1.0</span></td>
+            <td><span class="badge badge-amber">77%</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-amber">MB</div><span class="student-name-text">Miguel Bash</span></div></td>
+            <td><span class="plan-chip plan-custom">Custom GK</span></td>
+            <td><span class="num-days">4</span></td>
+            <td>124</td>
+            <td>114</td>
+            <td><span class="badge badge-amber">0.9</span></td>
+            <td><span class="badge badge-green">84%</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-rose">NM</div><span class="student-name-text">Nadia Mercer</span></div></td>
+            <td><span class="plan-chip plan-standard">Standard</span></td>
+            <td><span class="num-days">3</span></td>
+            <td>98</td>
+            <td>66</td>
+            <td><span class="badge badge-red">0.7</span></td>
+            <td><span class="badge badge-amber">77%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-note">
+      <span class="info-note-icon">ℹ️</span>
+      <span>Placement test metrics are excluded from all sprint data — the placement test is intentionally designed to find each student's point of failure and is not representative of working performance.</span>
+    </div>
+  </section>
+
+  <!-- ──────────────────── SECTION 3: ALL ACTIVITY ──────────────────── -->
+  <section class="report-section">
+    <div class="section-head">
+      <div class="section-icon icon-blue">3</div>
+      <div class="section-heading">
+        <div class="section-title">All Lalilo Activity — Standard Plan</div>
+        <div class="section-desc">Cumulative metrics since programme start · sorted by active days</div>
+      </div>
+      <span class="section-tag tag-blue">Priority 3</span>
+    </div>
+
+    <div class="table-wrap">
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Placement</th>
+            <th>Retook</th>
+            <th>Active Days</th>
+            <th>Minutes</th>
+            <th>XP</th>
+            <th>XP / Min</th>
+            <th>Accuracy</th>
+            <th>Flagged Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-violet">RM</div><span class="student-name-text">Rivers Morgan</span></div></td>
+            <td>G1</td>
+            <td><span class="badge badge-orange" style="font-size:11px;padding:2px 9px;">Yes — Still G1</span></td>
+            <td><span class="num-days">27</span></td>
+            <td>887</td>
+            <td>741</td>
+            <td><span class="badge badge-amber">0.8</span></td>
+            <td><span class="badge badge-amber">79%</span></td>
+            <td><span class="none-text">None</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-indigo">PM</div><span class="student-name-text">Pierce McCord</span></div></td>
+            <td>G1</td>
+            <td><span class="none-text">No</span></td>
+            <td><span class="num-days">24</span></td>
+            <td>622</td>
+            <td>853</td>
+            <td><span class="badge badge-green">1.4</span></td>
+            <td><span class="badge badge-green">81%</span></td>
+            <td><span class="skill-tag">Capitalization (Names)</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-amber">MB</div><span class="student-name-text">Miguel Bash</span></div></td>
+            <td>G1</td>
+            <td><span class="none-text">No</span></td>
+            <td><span class="num-days">21</span></td>
+            <td>589</td>
+            <td>618</td>
+            <td><span class="badge badge-amber">1.0</span></td>
+            <td><span class="badge badge-green">84%</span></td>
+            <td>
+              <span class="skill-tag">Features of a sentence</span>
+              <span class="skill-tag">Word family 'ill'</span>
+              <span class="skill-tag">Adjectives</span>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-teal">SD</div><span class="student-name-text">Sloane Derham</span></div></td>
+            <td>G1</td>
+            <td><span class="none-text">No</span></td>
+            <td><span class="num-days">3</span></td>
+            <td>111</td>
+            <td>111</td>
+            <td><span class="badge badge-amber">1.0</span></td>
+            <td><span class="badge badge-amber">76%</span></td>
+            <td><span class="none-text">None</span></td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-rose">NM</div><span class="student-name-text">Nadia Mercer</span></div></td>
+            <td>G1</td>
+            <td><span class="none-text">No</span></td>
+            <td><span class="num-days">3</span></td>
+            <td>98</td>
+            <td>66</td>
+            <td><span class="badge badge-red">0.7</span></td>
+            <td><span class="badge badge-amber">77%</span></td>
+            <td>
+              <span class="skill-tag">Categories G1</span>
+              <span class="skill-tag">Sight word 'this'</span>
+            </td>
+          </tr>
+          <tr>
+            <td><div class="student-cell"><div class="avatar-sm av-sky">ZL</div><span class="student-name-text">Zoya Luna</span></div></td>
+            <td>G1</td>
+            <td><span class="none-text">No</span></td>
+            <td><span class="num-days">1</span></td>
+            <td>26</td>
+            <td>39</td>
+            <td><span class="badge badge-green">1.5</span></td>
+            <td><span class="badge badge-green">81%</span></td>
+            <td><span class="none-text">None</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-note">
+      <span class="info-note-icon">ℹ️</span>
+      <span>Placement test metrics are excluded from cumulative data — the placement test is intentionally designed to find each student's point of failure and is not representative of working performance.</span>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  Generated 5 March 2026 &nbsp;·&nbsp; Alpha School Austin &nbsp;·&nbsp; Lalilo WL Red Alert Review &nbsp;·&nbsp; Confidential
+</footer>
+
+</body>
+</html>
